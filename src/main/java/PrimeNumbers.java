@@ -1,10 +1,7 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class PrimeNumbers {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ArrayList<Integer> primeNumbersArr = new ArrayList<>();
 
         for (int potentialPrimeNumber = 1; potentialPrimeNumber < 100; ) {
@@ -15,30 +12,23 @@ public class PrimeNumbers {
                 if (ost != 0) {
                     q++;
                 } else {
-                    if (potentialPrimeNumber != q) {
-                        break;
-                    } else {
-                        //                       System.out.println(potentialPrimeNumber);
+                    if (potentialPrimeNumber == q) {
                         primeNumbersArr.add(potentialPrimeNumber);
-                        break;
                     }
                 }
             }
         }
-        int n = 97;
-        int indexNumber;
-        int value;
 
-        for (indexNumber = 0; indexNumber < primeNumbersArr.size(); ) {
+        int inputNumber = 97;
 
-            value = n % primeNumbersArr.get(indexNumber);
-            if (value == 0) {
-                System.out.println(primeNumbersArr.get(indexNumber));
-                n = n / primeNumbersArr.get(indexNumber);
-            } else {
-                indexNumber++;
+        for (int i = 0; i < primeNumbersArr.size(); i++) {
+
+            int mod = inputNumber % primeNumbersArr.get(i);
+            if (mod == 0) {
+                System.out.println(primeNumbersArr.get(i));
+                inputNumber = inputNumber / primeNumbersArr.get(i);
+                i--;
             }
-
         }
     }
 }
