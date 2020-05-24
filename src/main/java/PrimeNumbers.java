@@ -1,44 +1,34 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class PrimeNumbers {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ArrayList<Integer> primeNumbersArr = new ArrayList<>();
 
-        for (int potentialPrimeNumber = 1; potentialPrimeNumber < 100; ) {
-            potentialPrimeNumber++;
-            for (int q = 2; q <= potentialPrimeNumber; ) {
-                int ost;
-                ost = potentialPrimeNumber % q;
-                if (ost != 0) {
-                    q++;
-                } else {
-                    if (potentialPrimeNumber != q) {
-                        break;
-                    } else {
-                        //                       System.out.println(potentialPrimeNumber);
-                        primeNumbersArr.add(potentialPrimeNumber);
-                        break;
-                    }
+        for (int potentialPrimeNumber = 2; potentialPrimeNumber < 100; potentialPrimeNumber++) {
+            boolean isPrime = true;
+            for (int i = 2; i < potentialPrimeNumber; i++) {
+                int mod = potentialPrimeNumber % i;
+                if (mod == 0) {
+                    isPrime = false;
+                    break;
                 }
             }
-        }
-        int n = 97;
-        int indexNumber;
-        int value;
 
-        for (indexNumber = 0; indexNumber < primeNumbersArr.size(); ) {
-
-            value = n % primeNumbersArr.get(indexNumber);
-            if (value == 0) {
-                System.out.println(primeNumbersArr.get(indexNumber));
-                n = n / primeNumbersArr.get(indexNumber);
-            } else {
-                indexNumber++;
+            if (isPrime) {
+                primeNumbersArr.add(potentialPrimeNumber);
             }
+        }
 
+        int inputNumber = 97;
+
+        for (int i = 0; i < primeNumbersArr.size(); i++) {
+
+            int mod = inputNumber % primeNumbersArr.get(i);
+            if (mod == 0) {
+                System.out.println(primeNumbersArr.get(i));
+                inputNumber = inputNumber / primeNumbersArr.get(i);
+                i--;
+            }
         }
     }
 }
